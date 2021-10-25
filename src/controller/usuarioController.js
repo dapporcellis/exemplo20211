@@ -1,4 +1,5 @@
 const Usuario = require("../model/Usuario");
+const passport = require("../config/passport");
 
 async function abreadd(req, res) {
   res.render("usuario/add.ejs", {});
@@ -9,7 +10,6 @@ async function add(req, res) {
   const email = req.body.email;
   const senha = req.body.senha;
 
-  console.log(req.file);
   if (req.file != undefined) {
     var foto = req.file.filename;
   }
@@ -39,4 +39,17 @@ async function del(req, res) {
   res.redirect("/admin/usuario");
 }
 
-module.exports = { abreadd, add, list, filtro, abreedit, edit, del };
+async function index(req, res) {
+  res.render("index", { msg: req.flash("msg") });
+}
+
+module.exports = {
+  abreadd,
+  add,
+  list,
+  filtro,
+  abreedit,
+  edit,
+  del,
+  index,
+};
