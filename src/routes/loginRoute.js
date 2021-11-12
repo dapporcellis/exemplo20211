@@ -1,17 +1,10 @@
 const express = require("express");
 const routes = express.Router();
-const usuarioController = require("../controller/usuarioController");
-const passport = require("../config/passport");
+const loginController = require("../controller/loginController");
 
-routes.get("/", usuarioController.index);
-//ADD
-routes.post(
-  "/",
-  passport.authenticate("local", {
-    successRedirect: "/admin/usuario",
-    failureRedirect: "/admin",
-    failureFlash: true,
-  })
-);
+//ABRE TELA LOGIN
+routes.get("/", loginController.abrelogin);
+//LOGAR
+routes.post("/", loginController.logar);
 
 module.exports = routes;

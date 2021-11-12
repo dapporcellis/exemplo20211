@@ -1,12 +1,9 @@
-exports.autenticacao = function () {
+exports.autenticacao = function autenticacao() {
   return function (req, res, next) {
     if (req.isAuthenticated()) {
       return next();
     }
-    req.flash(
-      "msg",
-      "Você precisa estar autenticado para acessar essa página!"
-    );
+    req.flash("msg", "Você deve se logar para acessar esse link!");
     res.redirect("/admin");
   };
 };

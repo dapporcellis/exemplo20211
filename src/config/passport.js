@@ -1,7 +1,6 @@
-const Usuario = require("../model/Usuario");
-
 var passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy;
+const Usuario = require("../model/Usuario");
 
 passport.serializeUser(function (user, done) {
   done(null, user.id);
@@ -32,7 +31,7 @@ passport.use(
           return done(null, false, req.flash("msg", "Usuário não existe!"));
         }
         if (user.senha != password) {
-          return done(null, false, req.flash("msg", "Senha Incorreta!"));
+          return done(null, false, req.flash("msg", "Senha incorreta!"));
         }
         return done(null, user);
       });
