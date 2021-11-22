@@ -6,5 +6,7 @@ const loginController = require("../controller/loginController");
 routes.get("/", loginController.abrelogin);
 //LOGAR
 routes.post("/", loginController.logar);
+//SAIR
+routes.get("/sair", loginController.sair);
 
 module.exports = routes;

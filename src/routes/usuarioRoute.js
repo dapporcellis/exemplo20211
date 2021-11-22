@@ -17,9 +17,9 @@ routes.post("/", usuarioController.filtro);
 
 //UPDATE
 //ABRE EDIT
-routes.get("/edt", usuarioController.abreedit);
+routes.get("/edt/:id", usuarioController.abreedit);
 //EDIT
-routes.post("/edt", usuarioController.edit);
+routes.post("/edt/:id", upload.single("foto"), usuarioController.edit);
 
 //DELETE
 routes.get("/del/:id", usuarioController.del);

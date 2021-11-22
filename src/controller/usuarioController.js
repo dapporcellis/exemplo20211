@@ -22,7 +22,10 @@ async function add(req, res) {
 
 async function list(req, res) {
   const usuarios = await Usuario.findAll();
-  res.render("usuario/list.ejs", { Usuarios: usuarios, msg: req.flash("msg") });
+  res.render("usuario/list1.ejs", {
+    Usuarios: usuarios,
+    msg: req.flash("msg"),
+  });
 }
 
 async function filtro(req, res) {
@@ -36,9 +39,25 @@ async function filtro(req, res) {
   res.render("usuario/list.ejs", { Usuarios: usuarios, msg: req.flash("msg") });
 }
 
-async function abreedit(req, res) {}
+async function abreedit(req, res) {
+  const usuario = await Usuario.findByPk(req.params.id);
+  res.render("usuario/edt.ejs", { msg: req.flash("msg"), usuario: usuario });
+}
 
-async function edit(req, res) {}
+async function edit(req, res) {
+  const usuario = await Usuario.findByPk(req.params.id);
+  usuario.nome = req.body.nome;
+  usuario.email = req.body.email;
+  usuario.senha = req.body.senha;
+
+  if (req.file != undefined) {
+    usuario.foto = req.file.filename;
+  }
+  usuario.save().then((usuario) => {
+    req.flash("msg", "O Usuario " + usuario.nome + " foi editado com sucesso!");
+    res.redirect("/admin/usuario");
+  });
+}
 
 async function del(req, res) {
   Usuario.destroy({ where: { id: req.params.id } }).then((usuario) => {

@@ -26,6 +26,7 @@
     <ul>
         <li><a href="/admin/usuario">Listar</a></li>
         <li><a href="/admin/usuario/add">Adicionar</a></li>
+        <li><a href="/admin/sair">Sair</a></li>
     </ul>
     <form method="post">
         <input type="text" name="pesquisar" placeholder="Digite sua pesquisa!">
@@ -50,7 +51,11 @@
             <td>
                 <img src="/uploads/<%=usuario.foto%>" width="80px">                
             </td>
-            <td>edita</td>
+            <td>
+                <a href="/admin/usuario/edt/<%=usuario.id%>">
+                    <img src="/edit.png" width="50px">
+                </a>
+            </td>
             <td>
                 <a href="/admin/usuario/del/<%=usuario.id%>">
                     <img src="/lixeira.png" width="50px">

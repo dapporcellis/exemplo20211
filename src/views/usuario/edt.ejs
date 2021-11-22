@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adiciona Usuário</title>
+    <title>Edita Usuário</title>
     <style>
         table, tr, td, th{
             border:solid black 1px;
@@ -20,6 +20,12 @@
             margin-bottom: 10px;
             padding: 10px;
         }
+        input[readonly]{
+            background-color:gray;
+        }
+        img{
+            max-height: 100px;
+        }
     </style>
 </head>
 <body>
@@ -29,9 +35,11 @@
         <li><a href="/admin/sair">Sair</a></li>
     </ul>
     <form method="post" enctype="multipart/form-data">
-        Nome: <input type="text" name="nome" placeholder="Digite seu nome"><br>
-        Email: <input type="email" name="email" placeholder="Digite seu email"><br>
-        Senha: <input type="password" name="senha" placeholder="Digite sua senha"><br>
+        ID: <input type="text" name="id" readonly value="<%=usuario.id%>"><br>
+        Nome: <input type="text" name="nome" value="<%=usuario.nome%>"><br>
+        Email: <input type="email" name="email" value="<%=usuario.email%>"><br>
+        Senha: <input type="password" name="senha" value="<%=usuario.senha%>"><br>
+        <img src="/uploads/<%=usuario.foto%>"><br>
         Foto: <input type="file" name="foto"><br>
         <input type="submit" value="Enviar">
     </form>
